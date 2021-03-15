@@ -1,0 +1,19 @@
+{
+  "name": "achilles",
+  "version": "0.0.1",
+  "description": "Achilles is the vector platform",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Finn Kiesinger",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

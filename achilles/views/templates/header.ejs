@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Vector</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand mb-0 h1" href="/">Vector</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mobile-navigation"
+          aria-controls="mobile-navigation"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mobile-navigation">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/features">Features</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="developer-dropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                For Developers
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="developer-dropdown"
+              >
+                <li><a class="dropdown-item" href="/docs">Documentation</a></li>
+                <li><a class="dropdown-item" href="/api">API</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div>
+            <% if (typeof user === 'undefined') { %>
+              <a class="btn btn-outline-dark" href="/login">
+                Sign In
+              </a>
+              <a class="btn btn-primary" href="/signup">
+                Get Started
+              </a>
+            <% } else { %>
+              <a class="btn btn-outline-dark" href="/dashboard">
+                Dashboard
+              </a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </nav>
