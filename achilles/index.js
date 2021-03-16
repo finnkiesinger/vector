@@ -6,8 +6,10 @@ const mongoose = require('mongoose');
 
 const index = require('./routes');
 const login = require('./routes/login');
+const logout = require('./routes/logout');
 const signup = require('./routes/signup');
 const dashboard = require('./routes/dashboard');
+const forgot = require('./routes/forgot');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -29,8 +31,10 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTop
     }));
     
     app.use(login);
+    app.use(logout);
     app.use(signup);
     app.use(dashboard);
+    app.use(forgot)
     app.use(index);
     
     app.listen(PORT, () => console.log("Listening on port", PORT));

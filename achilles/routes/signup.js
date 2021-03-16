@@ -16,7 +16,7 @@ router.post("/signup", async (req, res) => {
     const existsEmail = await User.exists({email});
     const existsUsername = await User.exists({username});
 
-    if (existsEmail || existsUsername) {
+    if (existsEmail || existsUsername) {
         req.session.destroy();
         res.redirect('/signup?error=user_already_exists');
     } else {
