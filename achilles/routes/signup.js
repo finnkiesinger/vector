@@ -1,5 +1,5 @@
 const {Router} = require('express');
-
+const User = require('../models/user');
 const router = Router();
 
 router.get("/signup", (req, res) => {
@@ -10,8 +10,29 @@ router.get("/signup", (req, res) => {
     }
 });
 
-router.post("/signup", (req, res) => {
-    const {username, password} = req.body;
+router.post("/signup", async (req, res) => {
+    const {username, email, password} = req.body;
+    
+    const existsEmail = await User.exists({email});
+    const existsUsername = await User.exists({username});
+
+    if (existsEmail || existsUsername) {
+        req.session.destroy();
+        res.redirect('/signup?error=user_already_exists');
+    } else {
+        const user = new User({
+            username,
+            email,
+            password
+        });
+
+        await user.save();
+
+        req.session.loggedIn = true;
+        req.session.username = username;
+
+        res.redirect('/dashboard');
+    }
 });
 
 module.exports = router;

@@ -2,11 +2,11 @@ const {Router} = require('express');
 
 const router = Router();
 
-router.get("/login", (req, res) => {
+router.get("/dashboard", (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect("/dashboard");
+        res.render("pages/dashboard");
     } else {
-        res.render('pages/login');
+        res.redirect("/login");
     }
 });
 

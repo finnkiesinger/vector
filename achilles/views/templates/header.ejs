@@ -52,7 +52,7 @@
             </li>
           </ul>
           <div>
-            <% if (typeof user === 'undefined') { %>
+            <% if (!loggedIn) { %>
               <a class="btn btn-outline-dark" href="/login">
                 Sign In
               </a>
