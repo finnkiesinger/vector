@@ -10,6 +10,7 @@ const logout = require('./routes/logout');
 const signup = require('./routes/signup');
 const dashboard = require('./routes/dashboard');
 const forgot = require('./routes/forgot');
+const create = require('./routes/create');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -36,8 +37,12 @@ mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTop
     app.use(dashboard);
     app.use(forgot)
     app.use(index);
+    app.use(create);
     
-    app.listen(PORT, () => console.log("Listening on port", PORT));
+    app.listen(PORT, () => {
+        console.log("Listening on port", PORT);
+        console.log("Open the page at: http://localhost:" + PORT);
+    });
 });
 
 
