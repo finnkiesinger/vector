@@ -23,7 +23,8 @@ router.post("/signup", async (req, res) => {
         const user = new User({
             username,
             email,
-            password
+            password,
+            shops: []
         });
 
         await user.save();
