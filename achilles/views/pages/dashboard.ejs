@@ -19,20 +19,21 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Title</th>
-              <th scope="col">Role</th>
             </tr>
           </thead>
 
           <tbody>
             <% for( let i = 0; i < shops.length; i++ ) { %>
-            <tr>
+            <tr onclick="window.location='http://localhost:3000/<%= shops[i].handle %>'">
               <th scope="row"><%= i+1 %></th>
               <td><b><%= shops[i].title %></b></td>
-              <td><%= shops[i].role %></td>
             </tr>
             <% } %>
           </tbody>
         </table>
+      </div>
+      <div class="mt-3">
+        <a href="/create" class="btn btn-primary">Create Shop</a>
       </div>
       <% } else { %>
         <h1 class="mb-4">Welcome to Vector!</h1>

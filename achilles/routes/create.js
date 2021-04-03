@@ -20,27 +20,25 @@ router.post("/create", async (req, res) => {
 
     const exists = await Shop.exists({title});
 
-    if (exists) {
-        res.redirect("/create?error=shop_already_exists");
-    } else {
-        const user = await User.findOne({username: req.session.username});
+    if (exists) return res.redirect("/create?error=shop_already_exists");
 
-        if (!!user) {
-            const handle = handlify(title);
-            const shop = new Shop({
-                title,
-                handle
-            });
+    const user = await User.findOne({username: req.session.username});
 
-            await shop.save();
+    if (!user) return res.redirect("/login");
 
-            user.shops = [...user.shops, handle];
+    const handle = handlify(title);
+    const shop = new Shop({
+        title,
+        handle
+    });
 
-            await user.save();
+    await shop.save();
 
-            res.redirect("/dashboard");
-        }
-    }
+    user.shops = [...user.shops, handle];
+
+    await user.save();
+
+    res.redirect("/dashboard");
 });
 
 module.exports = router;

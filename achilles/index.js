@@ -13,9 +13,10 @@ const forgot = require('./routes/forgot');
 const create = require('./routes/create');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 4001;
 
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true}).then(async () => {
+    app.disable("x-powered-by");
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, 'views'));
 

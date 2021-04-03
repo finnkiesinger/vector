@@ -1,35 +1,24 @@
 const {Router} = require('express');
+const User = require('../models/user');
+const Shop = require('../models/shop');
 
 const router = Router();
 
-router.get("/dashboard", (req, res) => {
-    if (req.session.loggedIn) {
-        const shops = [
-            {
-                title: "Shop 1",
-                role: "Admin",
-                handle: "shop-1"
-            },
-            {
-                title: "Shop 2",
-                role: "Collaborator",
-                handle: "shop-2"
-            },
-            {
-                title: "Shop 3",
-                role: "Collaborator",
-                handle: "shop-3"
-            },
-            {
-                title: "Shop 4",
-                role: "Collaborator",
-                handle: "shop-4"
-            },
-        ];
-        res.render("pages/dashboard", {shops: []});
-    } else {
-        res.redirect("/login");
+router.get("/dashboard", async (req, res) => {
+    if (!req.session.loggedIn || !req.session.username) return res.redirect("/login");
+
+    const user = await User.findOne({username: req.session.username});
+
+    if (!user) return res.redirect("/login");
+
+    const shops = [];
+
+    for (let handle of user.shops) {
+        const shop = await Shop.findOne({handle});
+        shops.push(shop);
     }
+
+    res.render("pages/dashboard", {shops});
 });
 
 module.exports = router;
