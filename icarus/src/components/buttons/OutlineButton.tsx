@@ -27,12 +27,13 @@ export interface OutlineButtonProps {
 const OutlineButtonStyle = styled.button`
     appearance: none;
     border: 2px solid ${(props: OutlineButtonProps) => props.borderColor || PRIMARY};
+    color: ${props => props.color || PRIMARY};
+    background: transparent;
     border-radius: ${props => props.rounded ? "4px" : "12px"};
     height: 45px;
     padding: 0 2rem;
     font-size: 1rem;
     font-weight: bold;
-    border: none; 
     cursor: pointer;
     transition: .1s;
     &:hover {
